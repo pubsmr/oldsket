@@ -137,7 +137,7 @@ def select_folder():
 
 # Создание основного окна
 root = tk.Tk()
-root.title("Sketch File Processor")
+root.title("Sketch Filee Processor")
 
 # Кнопки для выбора файла и папки
 btn_select_file = tk.Button(root, text="Выбрать файл .sketch", command=select_file)
