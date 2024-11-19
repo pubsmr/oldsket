@@ -30,7 +30,7 @@ jobs:
         pyinstaller --onefile sketh_gui.py  # Замените на имя вашего скрипта
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: sketh-gui-${{ matrix.os }}
         path: dist/sketh_gui  # Замените на имя вашего исполняемого файла
