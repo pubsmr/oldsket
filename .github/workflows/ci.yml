@@ -32,7 +32,7 @@ jobs:
         if [ ${{ runner.os }} == 'Windows' ]; then dir dist; else ls dist; fi
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: sketh_gui-artifact
         path: |
