@@ -29,8 +29,11 @@ jobs:
         pip install pyinstaller
         pyinstaller --onefile sketh_gui.py  # Замените на имя вашего скрипта
 
+    - name: List files in dist directory
+      run: ls dist  # Проверка содержимого папки dist
+
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # Обновлено до v4
       with:
         name: sketh-gui-${{ matrix.os }}
-        path: dist/sketh_gui  # Замените на имя вашего исполняемого файла
+        path: dist/sketh_gui  # Убедитесь, что это имя вашего исполняемого файла
