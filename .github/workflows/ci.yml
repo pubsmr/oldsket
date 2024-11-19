@@ -17,37 +17,24 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'  # Укажите нужную версию Python
+        python-version: '3.8' 
 
     - name: Upgrade pip
-      run: python -m pip install --upgrade pip  # Обновление pip
+      run: python -m pip install --upgrade pip
 
     - name: Build with PyInstaller
       run: |
         pip install pyinstaller
-        pyinstaller --onefile sketh_gui.py  # Замените на имя вашего скрипта
+        pyinstaller --onefile sketh_gui.py
 
     - name: List files in dist directory
       run: |
-        if [ ${{ runner.os }} == 'Windows' ]; then dir dist; else ls dist; fi  # Проверка содержимого папки dist
+        if [ ${{ runner.os }} == 'Windows' ]; then dir dist; else ls dist; fi
 
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v2
       with:
-        tag: 'latest'  # Используем фиксированное имя для релиза
-        release_name: 'Release latest'  # Название релиза
-        draft: false
-        prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Токен для доступа к GitHub API
-
-    - name: Upload Release Assets
-      uses: softprops/action-gh-release@v1
-      with:
-        tag: 'latest'  # Используем фиксированное имя для релиза
-        files: |
-          dist/sketh_gui.exe  # Для Windows
-          dist/sketh_gui      # Для других ОС
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Токен для доступа к GitHub API
+        name: sketh_gui-artifact
+        path: |
+          dist/sketh_gui.exe  
+          dist/sketh_gui     
